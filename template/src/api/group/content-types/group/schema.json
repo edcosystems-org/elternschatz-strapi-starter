@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "groups",
+  "info": {
+    "singularName": "group",
+    "pluralName": "groups",
+    "displayName": "👥 Group",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "groupName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "groupName"
+    },
+    "groupDescription": {
+      "type": "richtext"
+    },
+    "members": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "groupsAsMember"
+    },
+    "admins": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "groupAsAdmin"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project",
+      "mappedBy": "group"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "group"
+    },
+    "groupType": {
+      "type": "enumeration",
+      "enum": [
+        "Klasse",
+        "Arbeitsgemeinschaft"
+      ]
+    },
+    "grade": {
+      "type": "integer"
+    }
+  }
+}
